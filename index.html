@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #wrapper {
+        position: relative;
+        display: inline-block;
+        }
+        #popover {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 100%;
+        border: 1px solid red;
+        margin-left: 10px;
+        white-space: nowrap;
+        padding: 10px;
+        }
+        #popover::before {
+        position: absolute;
+        content: '';
+        right: 100%;
+        top: 0;
+        border: 10px solid transparent;
+        border-right-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <button id="btn">点我</button>
+        <div id="popover">
+            嘿嘿嘿
+        </div>
+    </div>
+
+    <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script>
+        $('#btn').on('click', function() {
+            $('#popover').toggle()
+            $(document).one('click', function() {
+                $('#popover').hide()
+            })
+        })
+        $('#wrapper').on('click', function(e) {
+            e.stopPropagation()
+        })
+    </script>
+</body>
+</html>
